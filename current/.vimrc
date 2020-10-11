@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'iamcco/markdown-preview.nvim', {'do': {->mkdp#util#install()}}
 Plug 'tpope/vim-surround'
 Plug 'micha/vim-colors-solarized'
-"Plug 'morhetz/gruvbox'"Removed and replaced w/ non plugin version"
+Plug 'morhetz/gruvbox' 
 "Plug 'mattn/emmet-vim' I removed this, since coc-emmet issue seems to be fixed
 Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'maxmellon/vim-jsx-pretty'
@@ -55,14 +55,21 @@ set wrapmargin=8
 "NERDtree toggler
 nnoremap <Leader>q :NERDTreeToggle<CR>
 "BG toggler
-nnoremap <Leader>b :set background=dark
-syntax on
+function Transparify()
+	:set background=dark 
+	:hi Normal guibg=NONE ctermbg=NONE 
+endfunction
+
+nnoremap <Leader>b :set background=dark <CR>
+nnoremap <Leader>l :set background=light <CR>
+nnoremap <Leader>t :exec Transparify() <CR>
 "Color SchemeZone
-set background=dark
+" Gruvbox (from morhetz)
+autocmd vimenter * colorscheme gruvbox 
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 "set termguicolors
 let g:gruvbox_italic=1
-"colorscheme gruvbox8transparent
-hi Normal guibg=NONE ctermbg=NONE
+set background=dark " dark mode
 "Airline config
 set laststatus=2
 
