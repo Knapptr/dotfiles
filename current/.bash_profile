@@ -7,5 +7,6 @@
 # user env
 export BROWSER=/usr/bin/brave
 export SAYHELLO="Hello $USER"
-export PATH=$PATH+:~/Scripts
+export PATH=$PATH+:~/Scripts:~/Scripts/dotfileBackup
+
 
