@@ -99,6 +99,7 @@ alias l.='ls -d .* --color=auto' #TUT
 alias ll='ls -l --color=auto' #TUT
 alias info='info --vi-keys' #Makes texinfo use vi keys (eg: info sed)
 alias rm="rm -i" #confirm delete
+alias dfb='dotfilebackup' #backup dotfiles & push to git
 
 export HISTCONTROL=ignoredups #wont record adjacent duplicate commands to history
 export HISTSIZE=1000 #sets recording of history to 1000 lines
