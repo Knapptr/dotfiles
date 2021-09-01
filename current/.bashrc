@@ -150,3 +150,23 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+
+# Node Version Manager N setup
+export N_PREFIX="$HOME/nodeVersions"
+export PATH="$HOME/:$PATH"
+export PATH="$HOME/nodeVersions/bin/:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# clip.exe as clip
+alias clip="clip.exe"
+# alias for windows home directory
+alias hh='cd /mnt/c/Users/knapp'
+# alias for windows dev directory
+alias dev='cd /mnt/c/Users/knapp/Dev'
+
+# make zsh default shell
+if test -t 1; then
+	exec zsh
+fi
