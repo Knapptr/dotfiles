@@ -65,6 +65,14 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Node Version Manager N setup
+export N_PREFIX="$HOME/nodeVersions"
+export PATH="$HOME/:$PATH"
+export PATH="$HOME/nodeVersions/bin/:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -101,3 +109,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias hh="cd /mnt/c/Users/knapp"
 alias dev="cd /mnt/c/Users/knapp/Dev"
+
+

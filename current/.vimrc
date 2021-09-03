@@ -11,17 +11,18 @@ endif
 "load plugins
 call plug#begin('~/.vim/plugged')
 "Load Plugins Here
-Plug 'tpope/vim-surround'
-Plug 'morhetz/gruvbox' 
-Plug 'neoclide/coc.nvim',{'branch':'release'}
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'gruvbox-community/gruvbox' 
 Plug 'junegunn/fzf',{'do':{ -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-"Plug 'jiangmiao/auto-pairs'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'prettier/vim-prettier',{'do':'npm install'}
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "Setup Coc Extensions
@@ -31,10 +32,15 @@ let g:coc_global_extensions = [
 			\ 'coc-tsserver',
 			\ 'coc-html',
 			\ 'coc-json',
+			\ 'coc-pairs',
 			\]
 
-"remove OG vi compatibile mode
-set nocp
+
+" PRETTIER settings
+" auto format on save
+let g:prettier#autoformat = 1
+" prettier won't require //@format to be at top of document
+let g:prettier#autoformat_require_pragma = 0
 
 "KEYS--------------------------
 "Move up by row, not by file line
@@ -59,21 +65,26 @@ set backspace=indent,eol,start
 set ruler
 set number
 set showcmd
+set showmatch
 set incsearch
 set hlsearch
 set linebreak
 set wrapmargin=8
 set relativenumber
 set nocompatible
-syntax enable
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set hidden
+set noswapfile
+set scrolloff=8
+set signcolumn=yes
 " mouse
 set mouse=a
-"NERDtree toggler
-nnoremap <Leader>q :NERDTreeToggle<CR>
-"FZF Gitfiles
-nmap <c-p> :GitFiles <cr>
-nmap <C-Bslash> :Files<cr>:
+"remove OG vi compatibile mode
+set nocp
 
+syntax enable
 "BG toggler
 " make bg dark if light, light if dark
 function! ToggleBG()
@@ -88,11 +99,8 @@ endfunction
 nnoremap <silent><leader>b : call ToggleBG()<cr>
 
 
-"Color SchemeZone
-" Gruvbox (from morhetz)
-autocmd vimenter * colorscheme gruvbox 
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
+colorscheme gruvbox
 "set termguicolors
 let g:gruvbox_italic=1
 set background=dark " dark mode
@@ -122,6 +130,12 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+
+"NERDtree toggler
+nnoremap <Leader>q :NERDTreeToggle<CR>
+"FZF Gitfiles
+nmap <c-p> :Files <cr>
+nmap <C-Bslash> :GitFiles<cr>:
 
 "No auto comment on new line
 au FileType * setlocal formatoptions-=cro
@@ -154,4 +168,5 @@ function! s:show_documenation()
 		call CocAction('doHover')
 	endif
 endfunction
+
 
