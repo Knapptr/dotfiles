@@ -169,4 +169,21 @@ function! s:show_documenation()
 	endif
 endfunction
 
+" make Y behave like D,C
+nnoremap Y y$
+" keep search result centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" undo break points
+inoremap , ,<c-g>u
+inoremap ! !<c-g>u
+inoremap . .<c-g>u
+inoremap ? ?<c-g>u
+
+
+"Visual line moving
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
+
 
