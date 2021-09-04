@@ -1,0 +1,1 @@
+/home/knapptr/dotfiles/current/.i3
