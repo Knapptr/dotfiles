@@ -8,7 +8,7 @@ export ZSH="/home/knapptr/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="josh"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -72,13 +72,16 @@ export PATH="$HOME/nodeVersions/bin/:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# adds scripts
+export PATH="$HOME/scripts:$PATH"
 
-# Which plugins would you like to load?
+
+ #Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git node)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,5 +112,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias hh="cd /mnt/c/Users/knapp"
 alias dev="cd /mnt/c/Users/knapp/Dev"
+
+alias cal-add="~/scripts/calendarScripts/cal-add.sh"
+alias cal-rm="~/scripts/calendarScripts/remove-cal.sh"
+# alias syn="~/scripts/syn"
+#Alias to make egrep standard
+alias grep="egrep"
+#use human readable ls
+alias "ls -l"="ls -lh"
 
 

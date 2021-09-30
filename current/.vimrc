@@ -16,6 +16,7 @@ Plug 'junegunn/fzf',{'do':{ -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
+Plug 'neoclide/jsonc.vim'
 Plug 'prettier/vim-prettier',{'do':'npm install'}
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -23,6 +24,9 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 "Setup Coc Extensions
@@ -33,6 +37,7 @@ let g:coc_global_extensions = [
 			\ 'coc-html',
 			\ 'coc-json',
 			\ 'coc-pairs',
+			\'coc-jest'
 			\]
 
 
@@ -69,7 +74,9 @@ set showmatch
 set incsearch
 set hlsearch
 set linebreak
-set wrapmargin=8
+set wrapmargin=0
+set textwidth=0
+set wrap
 set relativenumber
 set nocompatible
 set tabstop=4
@@ -84,7 +91,9 @@ set mouse=a
 "remove OG vi compatibile mode
 set nocp
 
-syntax enable
+" syntax enable
+" Make it so that tsconfig isn't a nightmare with errors
+autocmd Bufread,BufNewFile tsconfig.json set filetype=jsonc
 "BG toggler
 " make bg dark if light, light if dark
 function! ToggleBG()
@@ -134,8 +143,8 @@ endfunction
 "NERDtree toggler
 nnoremap <Leader>q :NERDTreeToggle<CR>
 "FZF Gitfiles
-nmap <c-p> :Files <cr>
-nmap <C-Bslash> :GitFiles<cr>:
+nmap <c-p> :GitFiles<cr>
+nmap <C-Bslash> :Files<cr>
 
 "No auto comment on new line
 au FileType * setlocal formatoptions-=cro
@@ -186,4 +195,12 @@ inoremap ? ?<c-g>u
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 
+" tmux navigator 
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent>  h :TmuxNavigateLeft<cr>
+nnoremap <silent> j :TmuxNavigateDown<cr>
+nnoremap <silent> k :TmuxNavigateUp<cr>
+nnoremap <silent> l :TmuxNavigateRight<cr>
+nnoremap <silent> \ :TmuxNavigatePrevious<cr>
 
