@@ -12,10 +12,9 @@ endif
 call plug#begin('~/.vim/plugged')
 "Load Plugins Here
 Plug 'gruvbox-community/gruvbox' 
-Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
-Plug 'junegunn/fzf.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
+Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 Plug 'neoclide/jsonc.vim'
 Plug 'prettier/vim-prettier',{'do':'npm install'}
 Plug 'scrooloose/nerdtree'
@@ -180,7 +179,7 @@ vnoremap K :m '<-2<cr>gv=gv
 "toggle paste
 map <silent> ,v :set paste! <cr>
 "open fugitive
-nmap <silent> ,git :Git<cr>
+nmap <silent> ,git :0Git<cr>
 
 
 
@@ -229,7 +228,7 @@ command! -bang -nargs=* FILES
 			\ call fzf#run(fzf#wrap({'source':'rg --files --hidden  --no-ignore-vcs --glob  "!{node_modules/*,.git/*}"'}))
 
 nnoremap <silent> <c-p> :FILES<cr>
-nnoremap <silent> p :Buffers<cr>
+nnoremap <silent> <c-b> :Buffers<cr>
 
 
 " EDITED 5/26/22

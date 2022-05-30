@@ -125,6 +125,8 @@ alias cl="cd /mnt/c/Users/knapp/Documents/Camp\ Leslie"
 
 #tmux ide layout
 alias ide="tmux split-window -h -p 30 \; split-window -f -p 15"
+#ripgrep smart case by default
+alias rg="rg -S"
 
 # WSL
 #open explorer to current folder
@@ -136,7 +138,12 @@ downloads="/mnt/c/Users/knapp/Downloads"
 # windows home
 chome="/mnt/c/Users/knapp"
 alias ff="/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe"
-
 export BROWSER="/mnt/c/Program Files/Mozilla Firefox/firefox.exe"
-
 export ESCDELAY=100
+
+
+# enable fzf keybinds
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+# enable fzf fuzzy completion
+source /usr/share/doc/fzf/examples/completion.zsh
+
