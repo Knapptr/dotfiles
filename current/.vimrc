@@ -27,7 +27,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'yaegassy/coc-tailwindcss',  {'do': 'npm install && npm run build', 'branch': 'feat/support-v3-and-use-server-pkg'}
 call plug#end()
 
 "Setup Coc Extensions
@@ -38,7 +37,8 @@ let g:coc_global_extensions = [
 			\ 'coc-html',
 			\ 'coc-json',
 			\ 'coc-pairs',
-			\'coc-jest'
+			\'coc-jest',
+			\
 			\]
 
 
@@ -52,7 +52,6 @@ let g:prettier#autoformat_require_pragma = 0
 "Move up by row, not by file line
 " nnoremap j gj
 " nnoremap k gk
-set novisualbell
 " remap escape
 inoremap jk <ESC>
 " remap leader
@@ -87,6 +86,8 @@ set hidden
 set noswapfile
 set scrolloff=8
 set signcolumn=yes
+set novisualbell
+set breakindent
 " mouse
 set mouse=a
 "remove OG vi compatibile mode
@@ -170,10 +171,18 @@ inoremap ! !<c-g>u
 inoremap . .<c-g>u
 inoremap ? ?<c-g>u
 
-
+"checklist add check to end of line
+nmap <silent> ,c A✅jk
 "Visual line moving
+nmap <silent> ,i :!echo % >> .gitignore <cr>
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
+"toggle paste
+map <silent> ,v :set paste! <cr>
+"open fugitive
+nmap <silent> ,git :Git<cr>
+
+
 
 " Select buffers with alt+ alt _
 nmap <silent> = :bn<cr>
@@ -223,4 +232,4 @@ nnoremap <silent> <c-p> :FILES<cr>
 nnoremap <silent> p :Buffers<cr>
 
 
-" EDITED 4/18/21
+" EDITED 5/26/22

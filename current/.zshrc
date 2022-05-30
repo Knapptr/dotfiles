@@ -8,7 +8,10 @@ export ZSH="/home/knapptr/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="josh"
+ZSH_THEME="agnoster"
+
+# This removes the @prompt when logged on to own machine
+DEFAULT_USER="knapptr" 
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -93,11 +96,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -107,9 +110,6 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias hh="cd /mnt/c/Users/knapp"
 alias dev="cd /mnt/c/Users/knapp/Dev"
 
@@ -120,5 +120,23 @@ alias cal-rm="~/scripts/calendarScripts/remove-cal.sh"
 alias grep="egrep"
 #use human readable ls
 alias "ls -l"="ls -lh"
+#camp leslie alias
+alias cl="cd /mnt/c/Users/knapp/Documents/Camp\ Leslie"
 
+#tmux ide layout
+alias ide="tmux split-window -h -p 30 \; split-window -f -p 15"
 
+# WSL
+#open explorer to current folder
+alias xp="explorer.exe ."
+# windows desktop
+desktop="/mnt/c/Users/knapp/Desktop"
+# windows downloads
+downloads="/mnt/c/Users/knapp/Downloads"
+# windows home
+chome="/mnt/c/Users/knapp"
+alias ff="/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe"
+
+export BROWSER="/mnt/c/Program Files/Mozilla Firefox/firefox.exe"
+
+export ESCDELAY=100
