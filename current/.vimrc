@@ -15,6 +15,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'prettier/vim-prettier',{'do':'npm install'}
 Plug 'scrooloose/nerdtree'
@@ -224,11 +225,7 @@ command! Bco execute '%bd|e #|bd#'
 nmap <silent> ,bco :Bco<cr>
 
 "files for FZF
-command! -bang -nargs=* FILES
-			\ call fzf#run(fzf#wrap({'source':'rg --files --hidden  --no-ignore-vcs --glob  "!{node_modules/*,.git/*}"'}))
-
-nnoremap <silent> <c-p> :FILES<cr>
 nnoremap <silent> <c-b> :Buffers<cr>
+nnoremap <silent> <c-p> :Files<cr>
 
-
-" EDITED 5/26/22
+" EDITED 5/30/22
