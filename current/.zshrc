@@ -127,7 +127,8 @@ alias cl="cd /mnt/c/Users/knapp/Documents/Camp\ Leslie"
 alias ide="tmux split-window -h -p 30 \; split-window -f -p 15"
 #ripgrep smart case by default
 alias rg="rg -S"
-
+#cal to ncal-b
+alias cal="ncal -b"
 # WSL
 #open explorer to current folder
 alias xp="explorer.exe ."

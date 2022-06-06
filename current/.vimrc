@@ -17,7 +17,6 @@ Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/jsonc.vim'
-Plug 'prettier/vim-prettier',{'do':'npm install'}
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -27,6 +26,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
 
 "Setup Coc Extensions
@@ -38,15 +38,12 @@ let g:coc_global_extensions = [
 			\ 'coc-json',
 			\ 'coc-pairs',
 			\'coc-jest',
+            \'coc-prettier',
+            \'coc-eslint'
 			\
 			\]
 
 
-" PRETTIER settings
-" auto format on save
-let g:prettier#autoformat = 1
-" prettier won't require //@format to be at top of document
-let g:prettier#autoformat_require_pragma = 0
 
 "KEYS--------------------------
 "Move up by row, not by file line
@@ -57,9 +54,9 @@ inoremap jk <ESC>
 " remap leader
 let mapleader = ","
 "vimrc edit
-nmap ,rc :e~/.vimrc<cr>
+nnoremap ,rc :e~/.vimrc<cr>
 "source vimrc
-nmap ,rr :source ~/.vimrc<cr>
+nnoremap ,rr :source ~/.vimrc<cr>
 "Chage buffers with leader h,l
 nmap ,l :bn<cr>
 nmap ,h :bp<cr>
@@ -72,8 +69,9 @@ set number
 set showcmd
 set showmatch
 set incsearch
-set hlsearch
 set linebreak
+set hlsearch
+set hidden
 set wrapmargin=0
 set textwidth=0
 set wrap
@@ -81,13 +79,17 @@ set relativenumber
 set nocompatible
 set tabstop=4
 set softtabstop=4
+set expandtab
+set ignorecase
+set smartcase
+set smartindent
 set shiftwidth=4
-set hidden
 set noswapfile
 set scrolloff=8
 set signcolumn=yes
 set novisualbell
 set breakindent
+set colorcolumn=80
 " mouse
 set mouse=a
 "remove OG vi compatibile mode
@@ -99,10 +101,12 @@ autocmd Bufread,BufNewFile tsconfig.json set filetype=jsonc
 
 
 
-colorscheme gruvbox
 "set termguicolors
-let g:gruvbox_italic=1
-set background=dark " dark mode
+" let g:gruvbox_italic=1
+let g:tokyonight_enable_italic = 0
+let g:tokyonight_style = 'storm'
+colorscheme tokyonight
+set background= " dark mode
 
 "Airline config
 set laststatus=2
@@ -111,7 +115,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1 
 
 " Airline Theme
-let g:airline_theme="gruvbox"
+let g:airline_theme="violet"
 " Auto  save on change
 "
 "Correct highlighting for JSON
