@@ -57,9 +57,6 @@ let mapleader = ","
 nnoremap ,rc :e~/.vimrc<cr>
 "source vimrc
 nnoremap ,rr :source ~/.vimrc<cr>
-"Chage buffers with leader h,l
-nmap ,l :bn<cr>
-nmap ,h :bp<cr>
 "------------------------------
 
 " general settings
@@ -77,19 +74,20 @@ set textwidth=0
 set wrap
 set relativenumber
 set nocompatible
-set tabstop=4
-set softtabstop=4
-set expandtab
 set ignorecase
 set smartcase
 set smartindent
-set shiftwidth=4
 set noswapfile
 set scrolloff=8
 set signcolumn=yes
 set novisualbell
 set breakindent
 set colorcolumn=80
+"tabs
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 " mouse
 set mouse=a
 "remove OG vi compatibile mode
@@ -127,9 +125,13 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " make bg dark if light, light if dark
 function! ToggleBG()
 	if &background =~ "dark"
-		set background=light
+		" set background=light
+let tokyonight_style = 'storm'
+        " set background=storm 
 	else
-		set background=dark
+		" set background=dark
+let tokyonight_style = 'dark'
+        " set background=dark
 	endif
 endfunction
 
@@ -145,8 +147,6 @@ au FileType * setlocal formatoptions-=cro
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
 
-"markdown preview grip
-let vim_markdown_preview_github=1
 
 " trigger docs in coc
 nnoremap <silent> K :call <SID>show_documenation()<CR>
@@ -176,21 +176,21 @@ inoremap . .<c-g>u
 inoremap ? ?<c-g>u
 
 "checklist add check to end of line
-nmap <silent> ,c A✅jk
+nnoremap <silent> ,c A✅jk
 "Visual line moving
-nmap <silent> ,i :!echo % >> .gitignore <cr>
+nnoremap <silent> ,i :!echo % >> .gitignore <cr>
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 "toggle paste
-map <silent> ,v :set paste! <cr>
+nnoremap <silent> ,v :set paste! <cr>
 "open fugitive
-nmap <silent> ,git :0Git<cr>
+nnoremap <silent> ,git :0Git<cr>
 
 
 
 " Select buffers with alt+ alt _
-nmap <silent> = :bn<cr>
-nmap <silent> - :bp<cr>
+nnoremap <silent> = :bn<cr>
+nnoremap <silent> - :bp<cr>
 
 " tmux navigator 
 let g:tmux_navigator_no_mappings = 1
@@ -217,19 +217,34 @@ function! s:check_back_space() abort
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Prettier command
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+"prettier selection
+vnoremap <leader>p  <Plug>(coc-format-selected)
+nnoremap <leader>p  <Plug>(coc-format-selected)
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 
 "close all buffers except current buffer
 command! Bco execute '%bd|e #|bd#'
-nmap <silent> ,bco :Bco<cr>
+nnoremap <silent> ,bco :Bco<cr>
 
 "files for FZF
 nnoremap <silent> <c-b> :Buffers<cr>
 nnoremap <silent> <c-p> :Files<cr>
+
+"
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
 
 " EDITED 5/30/22
