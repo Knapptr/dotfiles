@@ -129,6 +129,8 @@ alias ide="tmux split-window -h -p 30 \; split-window -f -p 15"
 alias rg="rg -S"
 #cal to ncal-b
 alias cal="ncal -b"
+# python to python3
+alias python="python3"
 # WSL
 #open explorer to current folder
 alias xp="explorer.exe ."
