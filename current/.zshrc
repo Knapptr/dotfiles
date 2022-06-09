@@ -144,6 +144,7 @@ alias ff="/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe"
 export BROWSER="/mnt/c/Program Files/Mozilla Firefox/firefox.exe"
 export ESCDELAY=100
 export FZF_DEFAULT_COMMAND='rg --files -S --hidden'
+export MANWIDTH=80
 
 
 # enable fzf keybinds
