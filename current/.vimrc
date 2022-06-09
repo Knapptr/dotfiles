@@ -38,8 +38,8 @@ let g:coc_global_extensions = [
 			\ 'coc-json',
 			\ 'coc-pairs',
 			\'coc-jest',
-            \'coc-prettier',
-            \'coc-eslint'
+      \'coc-prettier',
+      \'coc-eslint'
 			\
 			\]
 
@@ -57,6 +57,9 @@ let mapleader = ","
 nnoremap ,rc :e~/.vimrc<cr>
 "source vimrc
 nnoremap ,rr :source ~/.vimrc<cr>
+nnoremap <silent> <leader>bd  :bp<cr>:bd!#<cr>
+"toggle hl
+nnoremap <silent> <space> :set hlsearch ! <cr>
 "------------------------------
 
 " general settings
@@ -221,12 +224,12 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "prettier selection
 vnoremap <leader>p  <Plug>(coc-format-selected)
-nnoremap <leader>p  <Plug>(coc-format-selected)
+nmap <leader>p  :Prettier<cr>
 " GoTo code navigation.
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 
 "close all buffers except current buffer
