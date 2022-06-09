@@ -147,8 +147,13 @@ export FZF_DEFAULT_COMMAND='rg --files -S --hidden'
 export MANWIDTH=80
 
 
+
 # enable fzf keybinds
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 # enable fzf fuzzy completion
 source /usr/share/doc/fzf/examples/completion.zsh
+#start tmux by default
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
 

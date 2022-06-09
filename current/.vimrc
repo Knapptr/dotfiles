@@ -38,8 +38,8 @@ let g:coc_global_extensions = [
 			\ 'coc-json',
 			\ 'coc-pairs',
 			\'coc-jest',
-            \'coc-prettier',
-            \'coc-eslint'
+      \'coc-prettier',
+      \'coc-eslint'
 			\
 			\]
 
@@ -60,6 +60,8 @@ nnoremap ,rr :source ~/.vimrc<cr>
 nnoremap <silent> <space> :set hlsearch !<cr>
 "surround word with template literal
 nmap <leader>` ysaw{i$
+nnoremap <silent> <leader>bd  :bp<cr>:bd!#<cr>
+"toggle hl
 "------------------------------
 
 
@@ -225,12 +227,16 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "prettier selection
 vnoremap <leader>p  <Plug>(coc-format-selected)
+<<<<<<< HEAD
 nnoremap <silent> <leader>p  :Prettier <cr>
+=======
+nmap <leader>p  :Prettier<cr>
+>>>>>>> 6f1cf77bc3e5ca53fe3ebb75c6b4c2afa7ad8e92
 " GoTo code navigation.
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 
 "close all buffers except current buffer
