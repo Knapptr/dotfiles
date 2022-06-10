@@ -227,11 +227,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "prettier selection
 vnoremap <leader>p  <Plug>(coc-format-selected)
-<<<<<<< HEAD
-nnoremap <silent> <leader>p  :Prettier <cr>
-=======
 nmap <leader>p  :Prettier<cr>
->>>>>>> 6f1cf77bc3e5ca53fe3ebb75c6b4c2afa7ad8e92
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
