@@ -1,0 +1,14 @@
+#!/bin/bash
+currentDir=$(pwd)
+todoFound=false
+while [ $currentDir != "/home" ] && [ $todoFound = false ]
+  do
+    echo $(pwd)
+    if [ -f "./TODO.md" ]
+      then
+        echo "file found"
+        todoFound=true
+      fi
+    cd ..
+    currentDir=$(pwd)
+  done

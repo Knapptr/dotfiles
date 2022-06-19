@@ -1,6 +1,5 @@
 #!/bin/zsh
 DIR=/home/knapptr/Dev/boynton
-~/tmux_sessionizer ~/Dev/boynton
 if tmux list-windows | grep -q tests;then
  echo tests exists 
 else
