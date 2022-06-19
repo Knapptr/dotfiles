@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+upSearch="/home/knapptr/dotfiles/upSearch"
+todoFile="TODO.md"
+endDir="/home"
+
+todoPath=$( $upSearch $todoFile $endDir )
+
+if [ $? = 1 ]
+  then
+    echo "No todo found" &>2
+    exit 1
+fi
+
+vim $todoPath

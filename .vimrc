@@ -42,6 +42,7 @@ let g:coc_global_extensions = [
       \'coc-eslint'
 			\
 			\]
+let g:coc_node_path = "/home/knapptr/nodeVersions/bin/node"
 
 
 "KEYS--------------------------

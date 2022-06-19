@@ -1,0 +1,27 @@
+#!/bin/bash
+
+fileName=$1
+endDir=${2:-"/"}
+currentDir=$(pwd)
+fileFound=false
+filePath=""
+
+while [ $currentDir != $endDir ] && [ $fileFound = false ]
+  do
+    if [ -f $fileName ]
+      then
+        fileFound=true
+        filePath=$(readlink -f $fileName)
+      fi
+    cd ..
+    currentDir=$(pwd)
+  done
+
+if [ $fileFound = false ]
+  then
+    echo "Not found: $fileName " >&2
+    exit 1
+  fi
+
+echo $filePath
+
