@@ -11,21 +11,21 @@ endif
 "load plugins
 call plug#begin('~/.vim/plugged')
 "Load Plugins Here
-Plug 'gruvbox-community/gruvbox' 
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
-Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
-Plug 'junegunn/fzf.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'gruvbox-community/gruvbox' 
+Plug 'vim-airline/vim-airline-themes'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
+Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
+Plug 'junegunn/fzf.vim'
 Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
 
@@ -44,7 +44,6 @@ let g:coc_global_extensions = [
 			\]
 
 
-
 "KEYS--------------------------
 "Move up by row, not by file line
 " nnoremap j gj
@@ -57,16 +56,20 @@ let mapleader = ","
 nnoremap ,rc :e~/.vimrc<cr>
 "source vimrc
 nnoremap ,rr :source ~/.vimrc<cr>
+"clear highlights
+nnoremap <silent> <space> :set hlsearch !<cr>
+"surround word with template literal
+nmap <leader>` ysaw{i$
 nnoremap <silent> <leader>bd  :bp<cr>:bd!#<cr>
 "toggle hl
 nnoremap <silent> <space> :set hlsearch ! <cr>
-"'zoom' pane
 nnoremap - <c-w>\|
 "set panes equal
 nnoremap = <c-w>=
 "stupid dvorak mistake ex mode
 nmap Q :echo "Wrong key dummy"<CR>
 "------------------------------
+
 
 " general settings
 set backspace=indent,eol,start
@@ -87,7 +90,7 @@ set ignorecase
 set smartcase
 set smartindent
 set noswapfile
-set scrolloff=8
+set scrolloff=4
 set signcolumn=yes
 set novisualbell
 set breakindent
@@ -190,7 +193,7 @@ nnoremap <silent> ,c A✅<esc>
 nnoremap <silent> ,i :!echo % >> .gitignore <cr>
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
-"toggle paste
+" toggle paste
 nnoremap <silent> ,v :set paste! <cr>
 "open fugitive
 nnoremap <silent> ,git :0Git<cr>
@@ -245,6 +248,11 @@ nnoremap <silent> ,bco :Bco<cr>
 "files for FZF
 nnoremap <silent> <c-b> :Buffers<cr>
 nnoremap <silent> <c-p> :Files<cr>
+nnoremap <silent> <c-l> :Lines<cr>
+nnoremap <silent> <c-g> :Rg<cr>
+
+nnoremap ,o o<esc>
+nnoremap ,O O<esc>
 
 "
 " WSL yank support

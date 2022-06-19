@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+selected=$(tmux list-panes -a -F '#{session_name} #{pane_index} #{pane_current_command} #{pane_current_path}' | fzf)
+
+session=$(echo $selected | awk '{print $1}')
+pane=$(echo $selected | awk '{print $2}')
+
+tmux switch -t $session \; select-pane -t $pane
+
