@@ -243,7 +243,7 @@ nnoremap <silent> ,bco :Bco<cr>
 nnoremap <silent> <c-b> :Buffers<cr>
 nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <c-l> :Lines<cr>
-nnoremap <silent> <c-a> :Rg<cr>
+nnoremap <silent> <c-g> :Rg<cr>
 
 "
 " WSL yank support
