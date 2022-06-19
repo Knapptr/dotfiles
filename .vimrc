@@ -36,7 +36,6 @@ let g:coc_global_extensions = [
 			\ 'coc-tsserver',
 			\ 'coc-html',
 			\ 'coc-json',
-			\ 'coc-pairs',
 			\'coc-jest',
       \'coc-prettier',
       \'coc-eslint'
