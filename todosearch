@@ -1,14 +1,23 @@
 #!/bin/bash
 currentDir=$(pwd)
 todoFound=false
+todoPath=""
 while [ $currentDir != "/home" ] && [ $todoFound = false ]
   do
-    echo $(pwd)
     if [ -f "./TODO.md" ]
       then
-        echo "file found"
         todoFound=true
+        todoPath=$(readlink -f ./TODO.md)
       fi
     cd ..
     currentDir=$(pwd)
   done
+
+if [ $todoFound = false ]
+  then
+    echo "No TODO.md found" >&2
+    exit 1
+  fi
+
+echo $todoPath
+
