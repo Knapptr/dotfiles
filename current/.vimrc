@@ -60,6 +60,12 @@ nnoremap ,rr :source ~/.vimrc<cr>
 nnoremap <silent> <leader>bd  :bp<cr>:bd!#<cr>
 "toggle hl
 nnoremap <silent> <space> :set hlsearch ! <cr>
+"'zoom' pane
+nnoremap - <c-w>\|
+"set panes equal
+nnoremap = <c-w>=
+"stupid dvorak mistake ex mode
+nmap Q :echo "Wrong key dummy"<CR>
 "------------------------------
 
 " general settings
@@ -179,7 +185,7 @@ inoremap . .<c-g>u
 inoremap ? ?<c-g>u
 
 "checklist add check to end of line
-nnoremap <silent> ,c A✅jk
+nnoremap <silent> ,c A✅<esc>
 "Visual line moving
 nnoremap <silent> ,i :!echo % >> .gitignore <cr>
 vnoremap J :m '>+1<cr>gv=gv
