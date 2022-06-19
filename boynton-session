@@ -1,0 +1,25 @@
+#!/bin/zsh
+DIR=/home/knapptr/Dev/boynton
+~/tmux_sessionizer ~/Dev/boynton
+if tmux list-windows | grep -q tests;then
+ echo tests exists 
+else
+  tmux neww -S -c $DIR -n tests\
+    \; send-keys npm\ run\ test Enter
+fi
+if tmux list-windows | grep -q servers;then
+ echo servers exists 
+else
+  echo starting servers
+  tmux neww -S -c $DIR -n servers\
+    \; send-keys npm\ run\ start Enter\
+    \; split-window -h -c $DIR/frontend\
+    \; send-keys  npm\ run\ start Enter
+fi
+if tmux list-windows | grep -q dev;then
+ echo dev exists 
+else
+  tmux neww  -S -c $DIR -n dev\
+    \; send-keys vim Enter\
+    \; send-keys C-p
+fi

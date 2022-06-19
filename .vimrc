@@ -245,6 +245,9 @@ nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <c-l> :Lines<cr>
 nnoremap <silent> <c-g> :Rg<cr>
 
+nnoremap ,o o<esc>
+nnoremap ,O O<esc>
+
 "
 " WSL yank support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  
