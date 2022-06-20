@@ -76,7 +76,6 @@ set backspace=indent,eol,start
 set ruler
 set number
 set showcmd
-set showmatch
 set incsearch
 set linebreak
 set hlsearch
@@ -89,6 +88,7 @@ set nocompatible
 set ignorecase
 set smartcase
 set smartindent
+set autoindent
 set noswapfile
 set scrolloff=4
 set signcolumn=yes
@@ -263,5 +263,10 @@ if executable(s:clip)
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
     augroup END
 endif
+
+"uncomment for transparent background
+" highlight Normal ctermbg=NONE guibg=NONE
+" highlight LineNr ctermbg=NONE guibg=NONE
+" highlight SignColumn ctermbg=NONE guibg=NONE
 
 " EDITED 5/30/22

@@ -1,24 +1,41 @@
 #!/bin/zsh
 DIR=/home/knapptr/Dev/boynton
-if tmux list-windows | grep -q tests;then
- echo tests exists 
-else
-  tmux neww -S -c $DIR -n tests\
-    \; send-keys npm\ run\ test Enter
-fi
-if tmux list-windows | grep -q servers;then
- echo servers exists 
-else
-  echo starting servers
-  tmux neww -S -c $DIR -n servers\
-    \; send-keys npm\ run\ start Enter\
-    \; split-window -h -c $DIR/frontend\
-    \; send-keys  npm\ run\ start Enter
-fi
-if tmux list-windows | grep -q dev;then
- echo dev exists 
-else
-  tmux neww  -S -c $DIR -n dev\
-    \; send-keys vim Enter\
-    \; send-keys C-p
-fi
+
+    tmux rename-window -t 0 'shell'
+  if tmux list-windows | grep -q tests;then
+   echo tests exists 
+  else
+    tmux neww -S -c $DIR -n tests\
+      \; send-keys npm\ run\ test Enter
+  fi
+  if tmux list-windows | grep -q db ;then
+   echo db exists 
+  else
+    tmux neww  -S -d -c $DIR -n db\
+      \; send-keys -t db.bottom "sudo -u postgres psql Boynton-Dev" Enter
+  fi
+  if tmux list-windows | grep -q servers;then
+   echo servers exists 
+  else
+    echo starting servers
+    tmux neww -S -c $DIR -n servers\
+     \; send-keys npm\ run\ start Enter \
+      \; split-window -h -c $DIR/frontend\
+      \; send-keys npm\ run\ start Enter
+  fi
+  if tmux list-windows | grep -q vim;then
+   echo vim exists 
+  else
+    tmux neww  -S -c $DIR -n vim\
+      \; send-keys vim Enter\
+      \; send-keys C-p
+  fi
+
+  if ! service postgresql status &> /dev/null
+  then
+    tmux select-window -t "shell"
+    echo "The database is not up. Enter password to start the database."
+    sudo service postgresql start
+  else
+    echo "Database is running"
+  fi
