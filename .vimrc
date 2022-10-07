@@ -8,7 +8,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-"load plugins
+"load plugi,
 call plug#begin('~/.vim/plugged')
 "Load Plugins Here
 Plug 'neoclide/coc.nvim',{'branch':'release'}
@@ -26,7 +26,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 Plug 'junegunn/fzf.vim'
-Plug 'ghifarit53/tokyonight-vim'
+" Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
 
 "Setup Coc Extensions
@@ -115,7 +115,7 @@ autocmd Bufread,BufNewFile tsconfig.json set filetype=jsonc
 " let g:gruvbox_italic=1
 let g:tokyonight_enable_italic = 0
 let g:tokyonight_style = 'storm'
-colorscheme tokyonight
+colorscheme gruvbox
 set background= " dark mode
 
 "Airline config
@@ -265,8 +265,8 @@ if executable(s:clip)
 endif
 
 "uncomment for transparent background
-" highlight Normal ctermbg=NONE guibg=NONE
-" highlight LineNr ctermbg=NONE guibg=NONE
-" highlight SignColumn ctermbg=NONE guibg=NONE
+highlight Normal ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
 
 " EDITED 5/30/22

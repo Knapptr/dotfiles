@@ -21,7 +21,7 @@ DIR=/home/knapptr/Dev/boynton
     tmux neww -S -c $DIR -n servers\
      \; send-keys npm\ run\ start Enter \
       \; split-window -h -c $DIR/frontend\
-      \; send-keys npm\ run\ start Enter
+      \; send-keys npm\ run\ dev Enter
   fi
   if tmux list-windows | grep -q vim;then
    echo vim exists 
