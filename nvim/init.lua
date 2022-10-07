@@ -113,11 +113,11 @@ call plug#end()
 -- removed from above
 	-- Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 
--- Obsidian settings
-require "obsidian".setup({
-  dir = "/mnt/c/Users/knapp/Documents/TKnapp",
-  completion = {nvim_cmp = true}
-})
+-- -- Obsidian settings
+-- require "obsidian".setup({
+--   dir = "",
+--   completion = {nvim_cmp = true}
+-- })
 -- "TELESCOPE SETTINGS/BINDS
 map("n","<leader>ff","<cmd>Telescope find_files<cr>")
 map("n","<leader>bb","<cmd>Telescope buffers<cr>")
