@@ -1,5 +1,3 @@
-"This is for WSL on windows
-if &term =~ '256color'
 endif
 
 "load plug if not present
@@ -49,7 +47,7 @@ let g:coc_node_path = "/home/knapptr/nodeVersions/bin/node"
 " nnoremap j gj
 " nnoremap k gk
 " remap escape
-inoremap jk <ESC>
+inoremap C-c <ESC>
 " remap leader
 let mapleader = ","
 "vimrc edit
@@ -68,6 +66,8 @@ nnoremap - <c-w>\|
 nnoremap = <c-w>=
 "stupid dvorak mistake ex mode
 nmap Q :echo "Wrong key dummy"<CR>
+"close all buffers
+nmap <leader>- :%bd<cr>
 "------------------------------
 
 
