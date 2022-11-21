@@ -1,4 +1,6 @@
 -- Lua config for Nvim
+--clang
+-- require 'lspconfig'.clangd.setup{}
 ----KEYS
 local function map (mode,key,remap)
   vim.keymap.set(mode,key,remap,{silent = true})
@@ -48,9 +50,9 @@ vim.opt.visualbell = false
 vim.opt.breakindent = true
 vim.opt.colorcolumn="80"
 -- "tabs
-vim.opt.tabstop=2
-vim.opt.softtabstop=2
-vim.opt.shiftwidth=2
+vim.opt.tabstop=4
+vim.opt.softtabstop=4
+vim.opt.shiftwidth=4
 vim.opt.expandtab = true
 -- " mouse
 vim.opt.mouse="a"
@@ -107,9 +109,12 @@ call plug#begin()
   Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
   Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
   Plug 'epwalsh/obsidian.nvim'
+  Plug 'windwp/nvim-autopairs'
  
 call plug#end()
 ]])
+-- run autopairs
+require("nvim-autopairs").setup {}
 -- removed from above
 	-- Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 
@@ -142,7 +147,7 @@ require('lualine').setup({
   }
   })
   -- define autocommands
-vim.api.nvim_create_autocmd("BufWritePre",{command="lua vim.lsp.buf.format()"})
+vim.api.nvim_create_autocmd("BufWritePre",{command="lua vim.lsp.buf.formatting_sync()"})
 -- Colorscheme
 vim.cmd "colorscheme tokyonight" 
 -- " EDITED 9/9/2022 TK

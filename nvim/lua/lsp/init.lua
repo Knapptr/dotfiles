@@ -14,7 +14,8 @@ end
 local servers = {
   require "lsp.ts",
   require "lsp.bash",
-  require "lsp.lua"
+  require "lsp.lua",
+  require "lsp.c"
 }
 
 for _,server in ipairs(servers) do
