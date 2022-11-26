@@ -2,28 +2,28 @@
 --clang
 -- require 'lspconfig'.clangd.setup{}
 ----KEYS
-local function map (mode,key,remap)
-  vim.keymap.set(mode,key,remap,{silent = true})
+local function map(mode, key, remap)
+    vim.keymap.set(mode, key, remap, { silent = true })
 end
 
 vim.g.mapleader = ","
-map("n","<leader>a",":pwd")
-map("i","<C-c>","<ESC>")
+map("n", "<leader>a", ":pwd")
+map("i", "<C-c>", "<ESC>")
 -- edit / source init.lua
-map("n","<leader>rc",":e ~/.config/nvim/init.lua<cr>")
-map("n","<leader>rr",":so ~/.config/nvim/init.lua<cr>")
+map("n", "<leader>rc", ":e ~/.config/nvim/init.lua<cr>")
+map("n", "<leader>rr", ":so ~/.config/nvim/init.lua<cr>")
 -- turn off search highlighting
-map("n","<space>",":noh<cr>")
+map("n", "<space>", ":noh<cr>")
 -- make windows even/zoom in on one
-map("n","-","<c-w>|")
-map("n","=","<c-w>=")
+map("n", "-", "<c-w>|")
+map("n", "=", "<c-w>=")
 -- " Select buffers with alt+ alt _
-map("n","<M-=>",":bn<cr>")
-map("n","<M-->",":bp<cr>")
+map("n", "<M-=>", ":bn<cr>")
+map("n", "<M-->", ":bp<cr>")
 -- "open fugitive
-map("n","<leader>git",":Git<cr>")
+map("n", "<leader>git", ":Git<cr>")
 
--- "General Setting 
+-- "General Setting
 vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.relativenumber = true
@@ -35,8 +35,8 @@ vim.opt.incsearch = true
 vim.opt.linebreak = true
 vim.opt.hlsearch = true
 vim.opt.hidden = true
-vim.opt.wrapmargin=0
-vim.opt.textwidth=0
+vim.opt.wrapmargin = 0
+vim.opt.textwidth = 0
 vim.opt.compatible = false
 vim.opt.wrap = true
 vim.opt.ignorecase = true
@@ -44,18 +44,18 @@ vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.swapfile = false
-vim.opt.scrolloff=4
+vim.opt.scrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.visualbell = false
 vim.opt.breakindent = true
-vim.opt.colorcolumn="80"
+vim.opt.colorcolumn = "80"
 -- "tabs
-vim.opt.tabstop=4
-vim.opt.softtabstop=4
-vim.opt.shiftwidth=4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 -- " mouse
-vim.opt.mouse="a"
+vim.opt.mouse = "a"
 
 -- "MISC BITS
 
@@ -70,10 +70,10 @@ vim.opt.mouse="a"
 -- tmux navigator settings
 -- let g:tmux_navigator_no_mappings = 1
 vim.g.tmux_navigator_no_mappings = 1
-map("n","<M-h>",":TmuxNavigateLeft<cr>")
-map("n","<M-l>",":TmuxNavigateRight<cr>")
-map("n","<M-j>",":TmuxNavigateDown<cr>")
-map("n","<M-k>",":TmuxNavigateUp<cr>")
+map("n", "<M-h>", ":TmuxNavigateLeft<cr>")
+map("n", "<M-l>", ":TmuxNavigateRight<cr>")
+map("n", "<M-j>", ":TmuxNavigateDown<cr>")
+map("n", "<M-k>", ":TmuxNavigateUp<cr>")
 
 -- " WSL yank support
 vim.cmd([[
@@ -89,34 +89,35 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
-  Plug 'nvim-lua/plenary.nvim' 
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'neovim/nvim-lspconfig'
-	Plug 'folke/tokyonight.nvim'
-	Plug 'tpope/vim-commentary'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-fugitive'
-	Plug 'christoomey/vim-tmux-navigator'
-	Plug 'gruvbox-community/gruvbox' 
-	Plug 'leafgarland/typescript-vim'
-  Plug 'nvim-lualine/lualine.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'akinsho/bufferline.nvim',{'tag': 'v2.*'}
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
-  Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
-  Plug 'epwalsh/obsidian.nvim'
-  Plug 'windwp/nvim-autopairs'
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'ellisonleao/gruvbox.nvim'
+    Plug 'nvim-lua/plenary.nvim' 
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'folke/tokyonight.nvim'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-fugitive'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'akinsho/bufferline.nvim',{'tag': 'v2.*'}
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
+    Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
+    Plug 'epwalsh/obsidian.nvim'
+    Plug 'windwp/nvim-autopairs'
  
 call plug#end()
 ]])
 -- run autopairs
 require("nvim-autopairs").setup {}
 -- removed from above
-	-- Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
+-- Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 
 -- -- Obsidian settings
 -- require "obsidian".setup({
@@ -124,14 +125,14 @@ require("nvim-autopairs").setup {}
 --   completion = {nvim_cmp = true}
 -- })
 -- "TELESCOPE SETTINGS/BINDS
-map("n","<leader>ff","<cmd>Telescope find_files<cr>")
-map("n","<leader>bb","<cmd>Telescope buffers<cr>")
-map("n","<leader>gg","<cmd>Telescope live_grep<cr>")
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+map("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
+map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 --
 -- LSP SETUP
-vim.opt.completeopt={"menu","menuone","noselect"}
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- rename
-vim.keymap.set('n','<leader>rn',vim.lsp.buf.rename,{silent=true,buffer=0,noremap=true})
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, buffer = 0, noremap = true })
 -- diagnostics
 -- Configuration
 vim.diagnostic.config({
@@ -141,15 +142,16 @@ vim.diagnostic.config({
 -- diagnostic window on key
 function showDiagnostics()
     local opts = {
-      focusable = false,
-      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      border = 'rounded',
-      source = 'always',
-      prefix = ' ',
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
     }
     vim.diagnostic.open_float(nil, opts)
 end
-vim.keymap.set('n','<leader>d', showDiagnostics)
+
+vim.keymap.set('n', '<leader>d', showDiagnostics)
 -- popup window diag
 -- vim.api.nvim_create_autocmd("CursorHold", {
 --   buffer = bufnr,
@@ -157,7 +159,7 @@ vim.keymap.set('n','<leader>d', showDiagnostics)
 --   end
 -- })
 require('lsp')
-require('lsp.paths')  
+require('lsp.paths')
 require('lsp.completion')
 ---nvim-treesitter
 require('treesitter')
@@ -166,12 +168,12 @@ require('bufferline').setup({
 })
 -- start status bar
 require('lualine').setup({
-  options = { 
-    theme = 'tokyonight' 
-  }
-  })
-  -- format before save
-vim.api.nvim_create_autocmd("BufWritePre",{command="lua vim.lsp.buf.formatting_sync()"})
+    options = {
+        theme = 'tokyonight'
+    }
+})
+-- format before save
+vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- Colorscheme
-vim.cmd "colorscheme tokyonight" 
+vim.cmd "colorscheme nord"
 -- " EDITED 9/9/2022 TK
