@@ -89,6 +89,7 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
+    Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'ellisonleao/gruvbox.nvim'
     Plug 'nvim-lua/plenary.nvim' 
