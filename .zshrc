@@ -157,5 +157,4 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # tmux sessionizer from the primeagen
 alias tm=~/tmux_sessionizer
 
--e 
 alias luamake=/home/knapptr/lua-language-server/3rd/luamake/luamake
