@@ -130,8 +130,32 @@ map("n","<leader>gg","<cmd>Telescope live_grep<cr>")
 --
 -- LSP SETUP
 vim.opt.completeopt={"menu","menuone","noselect"}
+-- rename
 vim.keymap.set('n','<leader>rn',vim.lsp.buf.rename,{silent=true,buffer=0,noremap=true})
---
+-- diagnostics
+-- Configuration
+vim.diagnostic.config({
+    virtual_text = false,
+    underline = true
+})
+-- diagnostic window on key
+function showDiagnostics()
+    local opts = {
+      focusable = false,
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      border = 'rounded',
+      source = 'always',
+      prefix = ' ',
+    }
+    vim.diagnostic.open_float(nil, opts)
+end
+vim.keymap.set('n','<leader>d', showDiagnostics)
+-- popup window diag
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   buffer = bufnr,
+--   callback = function()
+--   end
+-- })
 require('lsp')
 require('lsp.paths')  
 require('lsp.completion')
@@ -146,7 +170,7 @@ require('lualine').setup({
     theme = 'tokyonight' 
   }
   })
-  -- define autocommands
+  -- format before save
 vim.api.nvim_create_autocmd("BufWritePre",{command="lua vim.lsp.buf.formatting_sync()"})
 -- Colorscheme
 vim.cmd "colorscheme tokyonight" 
