@@ -8,6 +8,7 @@ end
 
 vim.g.mapleader = ","
 map("n", "<leader>a", ":pwd")
+map("n","<leader>e", ":Lexplore<cr>")
 map("i", "<C-c>", "<ESC>")
 -- edit / source init.lua
 map("n", "<leader>rc", ":e ~/.config/nvim/init.lua<cr>")
