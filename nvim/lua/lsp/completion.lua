@@ -1,7 +1,4 @@
 --AUTO COMPLETE SETUP
---
-
-  -- Set up nvim-cmp.
   local cmp = require'cmp'
 
   cmp.setup({
