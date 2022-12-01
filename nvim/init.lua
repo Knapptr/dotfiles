@@ -130,7 +130,12 @@ require("nvim-autopairs").setup {}
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
---
+
+require'telescope'.setup( {
+    defaults = {
+        find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git" }
+    }
+} )
 -- LSP SETUP
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- rename
