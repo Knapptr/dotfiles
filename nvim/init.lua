@@ -113,6 +113,7 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
     Plug 'epwalsh/obsidian.nvim'
     Plug 'windwp/nvim-autopairs'
+    Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
  
 call plug#end()
 ]])
