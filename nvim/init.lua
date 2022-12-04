@@ -8,7 +8,7 @@ end
 
 vim.g.mapleader = ","
 map("n", "<leader>a", ":pwd")
-map("n","<leader>e", ":Lexplore<cr>")
+map("n", "<leader>e", ":Lexplore<cr>")
 map("i", "<C-c>", "<ESC>")
 -- edit / source init.lua
 map("n", "<leader>rc", ":e ~/.config/nvim/init.lua<cr>")
@@ -23,6 +23,8 @@ map("n", "<M-=>", ":bn<cr>")
 map("n", "<M-->", ":bp<cr>")
 -- "open fugitive
 map("n", "<leader>git", ":Git<cr>")
+-- toggle ZEN MODE
+map("n", "<leader>z", ":ZenMode<cr>")
 
 -- "General Setting
 vim.opt.termguicolors = true
@@ -46,10 +48,10 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.swapfile = false
 vim.opt.scrolloff = 4
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "no"
 vim.opt.visualbell = false
 vim.opt.breakindent = true
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 -- "tabs
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -113,6 +115,7 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
     Plug 'epwalsh/obsidian.nvim'
     Plug 'windwp/nvim-autopairs'
+    Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
  
 call plug#end()
@@ -122,21 +125,20 @@ require("nvim-autopairs").setup {}
 -- removed from above
 -- Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 
--- -- Obsidian settings
--- require "obsidian".setup({
---   dir = "",
---   completion = {nvim_cmp = true}
--- })
+-- -ZEN MODE-
+require("zen-mode").setup {
+    window = { backdrop = 1 },
+}
 -- "TELESCOPE SETTINGS/BINDS
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 
-require'telescope'.setup( {
+require 'telescope'.setup({
     defaults = {
         find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git" }
     }
-} )
+})
 -- LSP SETUP
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- rename
@@ -184,4 +186,4 @@ require('lualine').setup({
 vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- Colorscheme
 vim.cmd "colorscheme nord"
--- " EDITED 9/9/2022 TK
+-- " EDITED 12/4/2022 TK
