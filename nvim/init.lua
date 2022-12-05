@@ -25,7 +25,8 @@ map("n", "<M-->", ":bp<cr>")
 map("n", "<leader>git", ":Git<cr>")
 -- toggle ZEN MODE
 map("n", "<leader>z", ":ZenMode<cr>")
-
+-- Enter Explerer
+map("n", "<leader>pp", ":Ex<cr>")
 -- "General Setting
 vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start"
