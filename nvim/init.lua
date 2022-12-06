@@ -54,10 +54,12 @@ vim.opt.visualbell = false
 vim.opt.breakindent = true
 -- vim.opt.colorcolumn = "80"
 -- "tabs
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+    -- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
 vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = -1
+vim.opt.smarttab = true
 -- " mouse
 vim.opt.mouse = "a"
 
@@ -118,6 +120,7 @@ call plug#begin()
     Plug 'windwp/nvim-autopairs'
     Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
+    Plug 'tpope/vim-sleuth'
  
 call plug#end()
 ]])
