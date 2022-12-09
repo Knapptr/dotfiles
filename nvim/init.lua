@@ -110,17 +110,23 @@ call plug#begin()
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'akinsho/bufferline.nvim',{'tag': 'v2.*'}
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
     Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
     Plug 'epwalsh/obsidian.nvim'
     Plug 'windwp/nvim-autopairs'
     Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
     Plug 'tpope/vim-sleuth'
+    Plug 'VonHeikemen/lsp-zero.nvim'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'neovim/nvim-lspconfig',
+    Plug 'williamboman/mason.nvim',
+    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
  
 call plug#end()
 ]])
@@ -144,15 +150,20 @@ require 'telescope'.setup({
     }
 })
 -- LSP SETUP
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
--- rename
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, buffer = 0, noremap = true })
--- diagnostics
--- Configuration
-vim.diagnostic.config({
-    virtual_text = false,
-    underline = true
-})
+-- lsp0
+local lsp = require("lsp-zero")
+lsp.preset("recommended")
+lsp.nvim_workspace()
+lsp.setup()
+-- vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- -- rename
+-- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, buffer = 0, noremap = true })
+-- -- diagnostics
+-- -- Configuration
+-- vim.diagnostic.config({
+--     virtual_text = false,
+--     underline = true
+-- })
 -- diagnostic window on key
 function showDiagnostics()
     local opts = {
@@ -172,9 +183,9 @@ vim.keymap.set('n', '<leader>d', showDiagnostics)
 --   callback = function()
 --   end
 -- })
-require('lsp')
-require('lsp.paths')
-require('lsp.completion')
+-- require('lsp')
+-- require('lsp.paths')
+-- require('lsp.completion')
 ---nvim-treesitter
 require('treesitter')
 -- start bufferline
