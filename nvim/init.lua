@@ -54,7 +54,7 @@ vim.opt.visualbell = false
 vim.opt.breakindent = true
 -- vim.opt.colorcolumn = "80"
 -- "tabs
-    -- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
+-- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -95,6 +95,7 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
+    Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'ellisonleao/gruvbox.nvim'
