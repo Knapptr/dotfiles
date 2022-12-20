@@ -95,6 +95,7 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
+    Plug 'digitaltoad/vim-pug'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
