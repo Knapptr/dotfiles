@@ -95,7 +95,6 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
-    Plug 'digitaltoad/vim-pug'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
@@ -129,6 +128,8 @@ call plug#begin()
     Plug 'williamboman/mason.nvim',
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
+    Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
+    Plug 'digitaltoad/vim-pug', 
  
 call plug#end()
 ]])
@@ -202,5 +203,5 @@ require('lualine').setup({
 -- format before save
 vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- Colorscheme
-vim.cmd "colorscheme nord"
+vim.cmd "colorscheme dracula"
 -- " EDITED 12/4/2022 TK
