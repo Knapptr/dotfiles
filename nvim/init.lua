@@ -201,5 +201,5 @@ require('lualine').setup({
 -- format before save
 vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- Colorscheme
-vim.cmd "colorscheme nord"
+vim.cmd "colorscheme dracula"
 -- " EDITED 12/4/2022 TK
