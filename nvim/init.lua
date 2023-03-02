@@ -128,6 +128,8 @@ call plug#begin()
     Plug 'williamboman/mason.nvim',
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
+    Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
+    Plug 'digitaltoad/vim-pug', 
  
 call plug#end()
 ]])
