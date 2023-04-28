@@ -30,7 +30,7 @@ map("n", "<leader>pp", ":Ex<cr>")
 -- "General Setting
 vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start"
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false -- I go back and forth on this
 vim.opt.number = true
 vim.opt.ruler = true
 vim.opt.showcmd = true
