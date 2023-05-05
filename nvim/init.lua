@@ -143,7 +143,7 @@ require("zen-mode").setup {
     window = { backdrop = 1 },
 }
 -- "TELESCOPE SETTINGS/BINDS
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>")
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 
