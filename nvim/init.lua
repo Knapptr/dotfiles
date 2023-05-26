@@ -96,6 +96,7 @@ endif
 vim.cmd([[
 call plug#begin()
     Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'ellisonleao/gruvbox.nvim'
@@ -130,6 +131,7 @@ call plug#begin()
     Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
     Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
     Plug 'digitaltoad/vim-pug', 
+    Plug 'shaunsingh/solarized.nvim',
  
 call plug#end()
 ]])
