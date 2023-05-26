@@ -30,7 +30,7 @@ map("n", "<leader>pp", ":Ex<cr>")
 -- "General Setting
 vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start"
-vim.opt.relativenumber = false --true
+vim.opt.relativenumber = false -- I go back and forth on this
 vim.opt.number = true
 vim.opt.ruler = true
 vim.opt.showcmd = true
@@ -144,7 +144,7 @@ require("zen-mode").setup {
     window = { backdrop = 1 },
 }
 -- "TELESCOPE SETTINGS/BINDS
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>")
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 
