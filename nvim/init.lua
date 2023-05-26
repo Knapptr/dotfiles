@@ -95,6 +95,7 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
+    Plug 'akinsho/bufferline.nvim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'shaunsingh/solarized.nvim'
@@ -112,7 +113,6 @@ call plug#begin()
     Plug 'leafgarland/typescript-vim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'akinsho/bufferline.nvim',{'tag': 'v2.*'}
     Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
     Plug 'epwalsh/obsidian.nvim'
     Plug 'windwp/nvim-autopairs'
@@ -129,7 +129,7 @@ call plug#begin()
     Plug 'neovim/nvim-lspconfig',
     Plug 'williamboman/mason.nvim',
     Plug 'williamboman/mason-lspconfig.nvim'
-    Plug 'L3MON4D3/LuaSnip',{'tag':'<CurrentMajor>.*'}
+    Plug 'L3MON4D3/LuaSnip'
     Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
     Plug 'digitaltoad/vim-pug', 
     Plug 'shaunsingh/solarized.nvim',
