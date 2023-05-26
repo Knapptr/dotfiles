@@ -226,10 +226,10 @@ lsp.setup()
 -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, buffer = 0, noremap = true })
 -- -- diagnostics
 -- -- Configuration
--- vim.diagnostic.config({
---     virtual_text = false,
---     underline = true
--- })
+vim.diagnostic.config({
+    virtual_text = false,
+    underline = true
+})
 -- diagnostic window on key
 function showDiagnostics()
     local opts = {
