@@ -78,6 +78,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # adds scripts
 export PATH="$HOME/scripts:$PATH"
+export PATH="/snap/bin:$PATH"
 
 
  #Which plugins would you like to load?

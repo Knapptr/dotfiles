@@ -30,7 +30,7 @@ map("n", "<leader>pp", ":Ex<cr>")
 -- "General Setting
 vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start"
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false --true
 vim.opt.number = true
 vim.opt.ruler = true
 vim.opt.showcmd = true
@@ -96,6 +96,7 @@ endif
 vim.cmd([[
 call plug#begin()
     Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'shaunsingh/solarized.nvim'
     Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'ellisonleao/gruvbox.nvim'
@@ -117,7 +118,7 @@ call plug#begin()
     Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
     Plug 'tpope/vim-sleuth'
-    Plug 'VonHeikemen/lsp-zero.nvim'
+    Plug 'VonHeikemen/lsp-zero.nvim', {'branch':'v2.x'}
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
@@ -154,9 +155,71 @@ require 'telescope'.setup({
 })
 -- LSP SETUP
 -- lsp0
-local lsp = require("lsp-zero")
-lsp.preset("recommended")
+
+lsp_setup = {
+    float_border = 'rounded',
+    call_servers = 'local',
+    configure_diagnostics = true,
+    setup_servers_on_start = true,
+    set_lsp_keymaps = {
+        preserve_mappings = false,
+        omit = {},
+    },
+    manage_nvim_cmp = {
+        set_sources = 'recommended',
+        set_basic_mappings = true,
+        set_extra_mappings = false,
+        use_luasnip = true,
+        set_format = true,
+        documentation_window = true,
+    },
+}
+local lsp = require("lsp-zero").preset(lsp_setup)
+-- lsp.preset("recommended")
+lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
+end)
+
+lsp.format_on_save({
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
+    servers = {
+        ['lua_ls'] = { 'lua' },
+        ['rust_analyzer'] = { 'rust' },
+        ['tsserver'] = { 'javascript', 'typescript' }
+        -- if you have a working setup with null-ls
+        -- you can specify filetypes it can format.
+        -- ['null-ls'] = {'javascript', 'typescript'},
+    }
+})
 lsp.nvim_workspace()
+
+require('lspconfig').tailwindcss.setup {
+    settings = {
+        scss = { validate = false },
+        editor = {
+            quickSuggestions = { strings = true },
+            autoClosingQuotes = 'always',
+        },
+        tailwindCSS = {
+            experimental = {
+                classRegex = {
+                    'tw`([^`]*)', -- tw`...`
+                    'tw="([^"]*)', -- <div tw="..." />
+                    'tw={"([^"}]*)', -- <div tw={"..."} />
+                    'tw\\.\\w+`([^`]*)', -- tw.xxx`...`
+                    'tw\\(.*?\\)`([^`]*)', -- tw(Component)`...`
+                },
+            },
+            includeLanguages = {
+                typescript = 'javascript',
+                typescriptreact = 'javascript',
+            },
+        },
+    },
+}
 lsp.setup()
 -- vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- -- rename
@@ -186,9 +249,6 @@ vim.keymap.set('n', '<leader>d', showDiagnostics)
 --   callback = function()
 --   end
 -- })
--- require('lsp')
--- require('lsp.paths')
--- require('lsp.completion')
 ---nvim-treesitter
 require('treesitter')
 -- start bufferline
@@ -201,7 +261,7 @@ require('lualine').setup({
     }
 })
 -- format before save
-vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
+-- vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- Colorscheme
 vim.cmd "colorscheme dracula"
 -- " EDITED 12/4/2022 TK
