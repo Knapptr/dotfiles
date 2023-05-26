@@ -244,11 +244,11 @@ end
 
 vim.keymap.set('n', '<leader>d', showDiagnostics)
 -- popup window diag
--- vim.api.nvim_create_autocmd("CursorHold", {
---   buffer = bufnr,
---   callback = function()
---   end
--- })
+vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+    end
+})
 ---nvim-treesitter
 require('treesitter')
 -- start bufferline
