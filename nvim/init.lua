@@ -28,6 +28,7 @@ map("n", "<leader>z", ":ZenMode<cr>")
 -- Enter Explerer
 map("n", "<leader>pp", ":Ex<cr>")
 -- "General Setting
+vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.relativenumber = false -- I go back and forth on this
