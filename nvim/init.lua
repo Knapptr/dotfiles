@@ -25,7 +25,7 @@ map("n", "<M-->", ":bp<cr>")
 map("n", "<leader>git", ":Git<cr>")
 -- toggle ZEN MODE
 map("n", "<leader>z", ":ZenMode<cr>")
--- Enter Explerer
+-- Enter Explorer
 map("n", "<leader>pp", ":Ex<cr>")
 -- "General Setting
 vim.opt.splitright = true
@@ -180,6 +180,7 @@ lsp_setup = {
 local lsp = require("lsp-zero").preset(lsp_setup)
 -- lsp.preset("recommended")
 lsp.on_attach(function(client, bufnr)
+    vim.keymap.set('n', 'gD', '<cmd>Telescope lsp_definitions jump_type=vsplit<cr>', { buffer = true })
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
