@@ -8,6 +8,7 @@ end
 
 vim.g.mapleader = ","
 map("n", "<leader>a", ":pwd")
+map("n", "<leader>f", ":Format<cr>")
 map("n", "<leader>e", ":Lexplore<cr>")
 map("i", "<C-c>", "<ESC>")
 -- edit / source init.lua
@@ -53,6 +54,7 @@ vim.opt.scrolloff = 4
 vim.opt.signcolumn = "no"
 vim.opt.visualbell = false
 vim.opt.breakindent = true
+
 -- vim.opt.colorcolumn = "80"
 -- "tabs
 -- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
@@ -84,7 +86,7 @@ map("n", "<M-k>", ":TmuxNavigateUp<cr>")
 
 -- " WSL yank support
 vim.cmd([[
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
     augroup WSLYank
         autocmd!
@@ -96,6 +98,7 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
+    Plug 'mhartington/formatter.nvim'
     Plug 'akinsho/bufferline.nvim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -103,7 +106,7 @@ call plug#begin()
     Plug 'daschw/leaf.nvim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'ellisonleao/gruvbox.nvim'
-    Plug 'nvim-lua/plenary.nvim' 
+    Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'neovim/nvim-lspconfig'
     Plug 'folke/tokyonight.nvim'
@@ -114,7 +117,7 @@ call plug#begin()
     Plug 'leafgarland/typescript-vim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'nvim-treesitter/nvim-treesitter',{'do':':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter',
     Plug 'epwalsh/obsidian.nvim'
     Plug 'windwp/nvim-autopairs'
     Plug 'folke/zen-mode.nvim'
@@ -132,9 +135,9 @@ call plug#begin()
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'L3MON4D3/LuaSnip'
     Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
-    Plug 'digitaltoad/vim-pug', 
+    Plug 'digitaltoad/vim-pug',
     Plug 'shaunsingh/solarized.nvim',
- 
+
 call plug#end()
 ]])
 -- run autopairs
@@ -179,10 +182,10 @@ lsp_setup = {
 }
 local lsp = require("lsp-zero").preset(lsp_setup)
 -- lsp.preset("recommended")
-lsp.on_attach(function(client, bufnr)
-    vim.keymap.set('n', 'gD', '<cmd>Telescope lsp_definitions jump_type=vsplit<cr>', { buffer = true })
-    lsp.default_keymaps({ buffer = bufnr })
-end)
+-- lsp.on_attach(function(client, bufnr)
+--     vim.keymap.set('n', 'gD', '<cmd>Telescope lsp_definitions jump_type=vsplit<cr>', { buffer = true })
+--     lsp.default_keymaps({ buffer = bufnr })
+-- end)
 
 lsp.format_on_save({
     format_opts = {
@@ -192,7 +195,7 @@ lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
-        ['tsserver'] = { 'javascript', 'typescript' }
+        -- ['tsserver'] = { 'javascript', 'typescript' }
         -- if you have a working setup with null-ls
         -- you can specify filetypes it can format.
         -- ['null-ls'] = {'javascript', 'typescript'},
@@ -200,30 +203,30 @@ lsp.format_on_save({
 })
 lsp.nvim_workspace()
 
-require('lspconfig').tailwindcss.setup {
-    settings = {
-        scss = { validate = false },
-        editor = {
-            quickSuggestions = { strings = true },
-            autoClosingQuotes = 'always',
-        },
-        tailwindCSS = {
-            experimental = {
-                classRegex = {
-                    'tw`([^`]*)', -- tw`...`
-                    'tw="([^"]*)', -- <div tw="..." />
-                    'tw={"([^"}]*)', -- <div tw={"..."} />
-                    'tw\\.\\w+`([^`]*)', -- tw.xxx`...`
-                    'tw\\(.*?\\)`([^`]*)', -- tw(Component)`...`
-                },
-            },
-            includeLanguages = {
-                typescript = 'javascript',
-                typescriptreact = 'javascript',
-            },
-        },
-    },
-}
+-- require('lspconfig').tailwindcss.setup {
+--     settings = {
+--         scss = { validate = false },
+--         editor = {
+--             quickSuggestions = { strings = true },
+--             autoClosingQuotes = 'always',
+--         },
+--         tailwindCSS = {
+--             experimental = {
+--                 classRegex = {
+--                     'tw`([^`]*)', -- tw`...`
+--                     'tw="([^"]*)', -- <div tw="..." />
+--                     'tw={"([^"}]*)', -- <div tw={"..."} />
+--                     'tw\\.\\w+`([^`]*)', -- tw.xxx`...`
+--                     'tw\\(.*?\\)`([^`]*)', -- tw(Component)`...`
+--                 },
+--             },
+--             includeLanguages = {
+--                 typescript = 'javascript',
+--                 typescriptreact = 'javascript',
+--             },
+--         },
+--     },
+-- }
 lsp.setup()
 -- vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- -- rename
@@ -264,8 +267,62 @@ require('lualine').setup({
         theme = 'tokyonight'
     }
 })
+----- Formmater
+local util = require "formatter.util"
+
+-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+require("formatter").setup {
+    -- Enable or disable logging
+    logging = false,
+    -- Set the log level
+    log_level = vim.log.levels.WARN,
+    -- All formatter configurations are opt-in
+    filetype = {
+        -- Formatter configurations for filetype "lua" go here
+        -- and will be executed in order
+        javascript = {
+            -- "formatter.filetypes.lua" defines default configurations for the
+            -- "lua" filetype
+            require("formatter.filetypes.javascript").prettier,
+
+            -- You can also define your own configuration
+            -- function()
+            -- Supports conditional formatting
+            -- if util.get_current_buffer_file_name() == "special.lua" then
+            -- return nil
+            -- end
+
+            -- Full specification of configurations is down below and in Vim help
+            -- files
+            -- return {
+            -- exe = "stylua",
+            -- args = {
+            -- "--search-parent-directories",
+            -- "--stdin-filepath",
+            -- util.escape_path(util.get_current_buffer_file_path()),
+            -- "--",
+            -- "-",
+            -- },
+            -- stdin = true,
+            -- }
+            -- end
+        },
+    }
+
+    -- Use the special "*" filetype for defining formatter configurations on
+    -- any filetype
+    -- ["*"] = {
+    -- "formatter.filetypes.any" defines default configurations for any
+    -- filetype
+    -- require("formatter.filetypes.any").remove_trailing_whitespace
+    -- }
+    -- }
+}
 -- format before save
 -- vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
+-- DISABLE NEWLINE AUTOCOMMENTS
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 -- Colorscheme
 vim.cmd "colorscheme dracula"
 -- " EDITED 12/4/2022 TK

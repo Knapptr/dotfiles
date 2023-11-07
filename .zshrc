@@ -79,6 +79,8 @@ export NVM_DIR="$HOME/.nvm"
 # adds scripts
 export PATH="$HOME/scripts:$PATH"
 export PATH="/snap/bin:$PATH"
+# Ledger
+export LEDGER_FILE="$HOME/ledger/main.journal"
 
 
  #Which plugins would you like to load?
@@ -150,7 +152,11 @@ export MANWIDTH=80
 alias mm="~/man-pop"
 
 
-
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/home/knapptr/.local/bin:$PATH"
+export PATH="/home/knapptr/.ebcli-virtual-env/executables:$PATH"
 # enable fzf keybinds
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 # enable fzf fuzzy completion
