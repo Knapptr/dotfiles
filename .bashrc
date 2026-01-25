@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 [[ $- != *i* ]] && return
 
 colors() {
@@ -166,7 +162,3 @@ alias hh='cd /mnt/c/Users/knapp'
 # alias for windows dev directory
 alias dev='cd /mnt/c/Users/knapp/Dev'
 
-# make zsh default shell
-if test -t 1; then
-	exec zsh
-fi
