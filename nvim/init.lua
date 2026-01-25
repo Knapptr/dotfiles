@@ -257,7 +257,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
     end
 })
 ---nvim-treesitter
-require('treesitter')
+require('nvim-treesitter')
 -- start bufferline
 require('bufferline').setup({
 })
