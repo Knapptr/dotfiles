@@ -195,7 +195,7 @@ lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
-        -- ['tsserver'] = { 'javascript', 'typescript' }
+        ['tsserver'] = { 'javascript', 'typescript' }
         -- if you have a working setup with null-ls
         -- you can specify filetypes it can format.
         -- ['null-ls'] = {'javascript', 'typescript'},
@@ -284,7 +284,7 @@ require("formatter").setup {
             -- "formatter.filetypes.lua" defines default configurations for the
             -- "lua" filetype
             require("formatter.filetypes.javascript").prettier,
-
+            require("formatter.filetypes.typescript").prettier,
             -- You can also define your own configuration
             -- function()
             -- Supports conditional formatting
