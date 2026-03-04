@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # inspired by dotfiles from 'the primeagen'
 if [[ $# -eq 1 ]]; then
     selected=$1
