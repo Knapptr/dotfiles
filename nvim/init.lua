@@ -1,12 +1,12 @@
--- Lua config for Nvim
---clang
--- require 'lspconfig'.clangd.setup{}
+--Lua config for Nvim
 ----KEYS
 local function map(mode, key, remap)
     vim.keymap.set(mode, key, remap, { silent = true })
 end
 
 vim.g.mapleader = ","
+-- replace with x, helpful for md todo boxes
+map("n", "<leader>x", "rx")
 map("n", "<leader>a", ":pwd")
 map("n", "<leader>f", ":Format<cr>")
 map("n", "<leader>e", ":Lexplore<cr>")
@@ -22,7 +22,7 @@ map("n", "=", "<c-w>=")
 -- " Select buffers with alt+ alt _
 map("n", "<M-=>", ":bn<cr>")
 map("n", "<M-->", ":bp<cr>")
--- "open fugitive
+-- "open fugitiv
 map("n", "<leader>git", ":Git<cr>")
 -- toggle ZEN MODE
 map("n", "<leader>z", ":ZenMode<cr>")
@@ -55,8 +55,6 @@ vim.opt.signcolumn = "no"
 vim.opt.visualbell = false
 vim.opt.breakindent = true
 
--- vim.opt.colorcolumn = "80"
--- "tabs
 -- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
@@ -66,13 +64,6 @@ vim.opt.smarttab = true
 -- " mouse
 vim.opt.mouse = "a"
 
--- "MISC BITS
-
--- "Correct highlighting for JSON
--- autocmd FileType json syntax match Comment +\/\/.\+$+
-
--- "Autocomplete in HTML files
--- autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
 
 
@@ -108,7 +99,6 @@ call plug#begin()
     Plug 'ellisonleao/gruvbox.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
-    Plug 'neovim/nvim-lspconfig'
     Plug 'folke/tokyonight.nvim'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
@@ -123,20 +113,19 @@ call plug#begin()
     Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
     Plug 'tpope/vim-sleuth'
-    Plug 'VonHeikemen/lsp-zero.nvim', {'branch':'v2.x'}
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-nvim-lua'
     Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'neovim/nvim-lspconfig',
-    Plug 'williamboman/mason.nvim',
-    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'mason-org/mason.nvim',
     Plug 'L3MON4D3/LuaSnip'
     Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
     Plug 'digitaltoad/vim-pug',
     Plug 'shaunsingh/solarized.nvim',
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'mason-org/mason-lspconfig.nvim'
 
 call plug#end()
 ]])
@@ -160,35 +149,34 @@ require 'telescope'.setup({
     }
 })
 -- LSP SETUP
--- lsp0
 
-lsp_setup = {
-    float_border = 'rounded',
-    call_servers = 'local',
-    configure_diagnostics = true,
-    setup_servers_on_start = true,
-    set_lsp_keymaps = {
-        preserve_mappings = false,
-        omit = {},
-    },
-    manage_nvim_cmp = {
-        set_sources = 'recommended',
-        set_basic_mappings = true,
-        set_extra_mappings = false,
-        use_luasnip = true,
-        set_format = true,
-        documentation_window = true,
-    },
-}
+-- lsp_setup = {
+--     float_border = 'rounded',
+--     call_servers = 'local',
+--     configure_diagnostics = true,
+--     setup_servers_on_start = true,
+--     set_lsp_keymaps = {
+--         preserve_mappings = false,
+--         omit = {},
+--     },
+--     manage_nvim_cmp = {
+--         set_sources = 'recommended',
+--         set_basic_mappings = true,
+--         set_extra_mappings = false,
+--         use_luasnip = true,
+--         set_format = true,
+--         documentation_window = true,
+--     },
+-- }
 -- vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- -- rename
 -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true, buffer = 0, noremap = true })
 -- -- diagnostics
 -- -- Configuration
-vim.diagnostic.config({
-    virtual_text = false,
-    underline = true
-})
+-- vim.diagnostic.config({
+--     virtual_text = false,
+--     underline = true
+-- })
 -- diagnostic window on key
 function showDiagnostics()
     local opts = {
@@ -270,6 +258,12 @@ require("formatter").setup {
     -- }
     -- }
 }
+
+-- Mason LSP manager
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+
 -- format before save
 -- vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- DISABLE NEWLINE AUTOCOMMENTS
@@ -277,4 +271,3 @@ vim.cmd('autocmd BufEnter * set formatoptions-=cro')
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 -- Colorscheme
 vim.cmd "colorscheme dracula"
--- " EDITED 12/4/2022 TK

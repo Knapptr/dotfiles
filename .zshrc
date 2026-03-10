@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+#if you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -160,5 +160,8 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 # tmux sessionizer from the primeagen
 alias tm=~/tmux_sessionizer
+
+#nvim
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 alias luamake=/home/knapptr/lua-language-server/3rd/luamake/luamake
