@@ -4,6 +4,8 @@ local function map(mode, key, remap)
     vim.keymap.set(mode, key, remap, { silent = true })
 end
 
+
+
 vim.g.mapleader = ","
 -- replace with x, helpful for md todo boxes
 map("n", "<leader>x", "rx")
@@ -113,13 +115,8 @@ call plug#begin()
     Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npm install'}
     Plug 'tpope/vim-sleuth'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-nvim-lua'
-    Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'mason-org/mason.nvim',
+    Plug 'saghen/blink.cmp' , {'tag':'v1.*'}
     Plug 'L3MON4D3/LuaSnip'
     Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
     Plug 'digitaltoad/vim-pug',
@@ -129,8 +126,17 @@ call plug#begin()
 
 call plug#end()
 ]])
+
+-- removed plugins
+    -- Plug 'hrsh7th/nvim-cmp'
+    -- Plug 'hrsh7th/cmp-buffer'
+    -- Plug 'hrsh7th/cmp-path'
+    -- Plug 'hrsh7th/cmp-nvim-lsp'
+    -- Plug 'hrsh7th/cmp-nvim-lua'
+    -- Plug 'saadparwaiz1/cmp_luasnip'
 -- run autopairs
 require("nvim-autopairs").setup {}
+
 -- removed from above
 -- Plug 'junegunn/fzf',{'do':{-> fzf#install()}}
 
@@ -261,9 +267,43 @@ require("formatter").setup {
 
 -- Mason LSP manager
 require("mason").setup()
-require("mason-lspconfig").setup()
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+require("mason-lspconfig").setup({capabilities=capabilities})
+require('blink.cmp').setup({
+  keymap = { preset = 'default' },
 
+  appearance = {
+    nerd_font_variant = 'mono'
+  },
 
+  completion = {
+    documentation = { auto_show = true }
+  },
+
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
+
+  fuzzy = {
+    implementation = "prefer_rust_with_warning",
+  },
+})
+
+vim.lsp.config("lua_ls", {
+settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      -- diagnostics = {
+      --   globals = { 'vim' },  -- just tell it vim is a known global
+      -- },
+    },
+  },
+})
+vim.lsp.enable("lua_ls")
 -- format before save
 -- vim.api.nvim_create_autocmd("BufWritePre", { command = "lua vim.lsp.buf.formatting_sync()" })
 -- DISABLE NEWLINE AUTOCOMMENTS
