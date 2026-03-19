@@ -56,6 +56,7 @@ vim.opt.scrolloff = 4
 vim.opt.signcolumn = "no"
 vim.opt.visualbell = false
 vim.opt.breakindent = true
+vim.opt.clipboard = "unnamedplus"
 
 -- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
 vim.opt.expandtab = true
