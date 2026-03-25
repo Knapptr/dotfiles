@@ -1,0 +1,5 @@
+binds {
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Super+B { spawn "firefox"; }
+    Super+E { spawn "alacritty" "-e" "ranger"; }
+}
