@@ -58,6 +58,7 @@ vim.opt.visualbell = false
 vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus"
 
+
 -- THIS IS LIKELY OVERWRITTEN BY tpope/vim-slueth
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
@@ -312,3 +313,6 @@ vim.cmd('autocmd BufEnter * set formatoptions-=cro')
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 -- Colorscheme
 vim.cmd "colorscheme dracula"
+-- transparency for niri / alacritty
+vim.api.nvim_set_hl(0,"Normal", {bg = "none"})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})

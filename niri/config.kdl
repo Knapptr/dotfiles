@@ -3,6 +3,11 @@
 // Check the wiki for a full description of the configuration:
 // https://yalter.github.io/niri/Configuration:-Introduction
 
+
+// set environment variables here
+environment {
+    SCRIPTS "/home/tknapp/scripts"
+}
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
@@ -18,10 +23,6 @@ input {
             layout "us"
             options "ctrl:swapcaps,altwin:swap_lalt_lwin"
             variant "dvorak"
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-
             // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
@@ -277,12 +278,6 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-// spawn-at-startup "waybar"
-// startups
-spawn-sh-at-startup "nordvpn connect"
-spawn-at-startup "thunderbird"
-spawn-at-startup "discord"
 
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -290,7 +285,7 @@ spawn-at-startup "discord"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -298,11 +293,11 @@ hotkey-overlay {
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
+// The path is formatted with strftime(3) to give you the screenshot rdate and time.
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
@@ -323,9 +318,18 @@ animations {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 
+// no border on alacritty
+// window-rule{
+//     match app-id="Alactritty"
+//     opacity 0.8
+//     draw-border-with-background false
+//     border{
+//         off
+//     }
+// }
 // Open thunderbird into email space
 window-rule {
-    match app-id="thunderbird"
+    match app-id="Thunderbird"
 
     open-maximized true
     open-on-workspace "email"
@@ -386,6 +390,8 @@ binds {
     // Most actions that you can bind here can also be invoked programmatically with
     // `niri msg action do-something`.
 
+    // toggle dark/light mode
+    MOD+backslash {spawn-sh "$SCRIPTS/ld-toggle.sh";}
     // shutdown options
     Mod+Shift+Escape { spawn "sh" "-c" "choice=$(printf 'reboot\npoweroff\nsuspend\nlogout' | fuzzel --dmenu -p 'Power: ') && case $choice in reboot) systemctl reboot ;; poweroff) systemctl poweroff ;; suspend) systemctl suspend ;; logout) niri msg action quit ;; esac"; }
     // Mod+Shift+Escape hotkey-overlay-title="fz" {spawn-sh "choice = $(printf \"systemctl reboot\nsynstemctl shutdown\" | fuzzel --dmenu)";}
@@ -656,4 +662,13 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+// startup apps
+// This line starts waybar, a commonly used bar for Wayland compositors.
+spawn-at-startup "waybar"
+// startups
+spawn-at-startup "thunderbird"
+spawn-at-startup "discord"
+spawn-sh-at-startup "swaybg -i $HOME/Pictures/Wallpapers/erratics.jpg"
+spawn-sh-at-startup "nord connect"
+
 include "dms/binds.kdl"
