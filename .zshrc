@@ -1,11 +1,24 @@
+# autocompletions
+autoload -Uz compinit
+compinit
+
+# highlighting autocompletions
+zstyle ':completion:*' menu select
+
+#correctons
+setopt CORRECT_ALL
+
 # Prompt Wizardry
 #PROMPT="%K{green}%n @ %m %K{magenta}%F{green}❯%f%~ %#%k"
 # I stole this prompt from "Bread on Penguins", a linux influencer. I have no shame.
 NEWLINE=$'\n'
 PROMPT="${NEWLINE}%K{#2E3440}%F{#E5E9F0}%t %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ "
+
 #########################################
 # Node Version Manager N setup
-export N_PREFIX="$HOME/Dependencies/Node/"
+export N_PREFIX="$HOME/Dependencies/Node"
+export PATH="$N_PREFIX/bin:$PATH"
+
 
 # set scriptdirectory
 export SCRIPTS=$HOME/scripts
@@ -19,6 +32,16 @@ fi
 
 
 # tmux sessionizer from the primeagen
-alias tm=~/tmux_sessionizer
+# alias tm=~/tmux_sessionizer
 
-
+#  FZF history binding
+# Use rg to filter history, fzf to pick
+fzf-history-rg() {
+  local selected
+  selected=$(fc -l 1 | rg --color=never "${LBUFFER}" | fzf --tac --no-sort | sed 's/^ *[0-9]* *//')
+  BUFFER="$selected"
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N fzf-history-rg
+bindkey '^R' fzf-history-rg
