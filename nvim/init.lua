@@ -93,6 +93,7 @@ endif
 -- "PLUGINS
 vim.cmd([[
 call plug#begin()
+Plug 'neanias/everforest-nvim', {'branch': 'main'}
     Plug 'mhartington/formatter.nvim'
     Plug 'akinsho/bufferline.nvim'
     Plug 'dracula/vim', { 'as': 'dracula' }
@@ -212,7 +213,7 @@ require('bufferline').setup({
 -- start status bar
 require('lualine').setup({
     options = {
-        theme = 'tokyonight'
+        theme = 'gruvbox'
     }
 })
 ----- Formmater
@@ -316,3 +317,12 @@ vim.cmd "colorscheme dracula"
 -- transparency for niri / alacritty
 vim.api.nvim_set_hl(0,"Normal", {bg = "none"})
 vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+
+-- ron comments
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "ron",
+    callback = function()
+        vim.bo.commentstring = "// %s"
+    end
+})
+

@@ -1,0 +1,110 @@
+{
+  "layer": "top",
+  "position": "top",
+  "exclusive": true,
+  "passthrough": false,
+  // "gtk-layer-shell": true,
+  /* === Modules Order === */
+  "modules-left": [
+    // "custom/initials",
+    "clock"
+    //"cpu",
+    //"memory"
+    /*"disk",
+     "temperature" */
+  ],
+  "modules-center": [
+    "niri/workspaces"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "battery",
+    "pulseaudio",
+    "custom/nord-connected",
+    "network"
+  ],
+  /* === Modules Left === */
+  "custom/initials": {
+    "format": "󰬁󰫸",
+    "tooltip": false
+  },
+  "clock": {
+    "timezone": "America/New_York",
+    "format": "{:%I:%M  %d/%m}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode": "month"
+    }
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": true,
+  },
+  "memory": {
+    "format": "{}% 󰍛",
+    "tooltip": true,
+    "tooltip-format": "RAM in use: "
+  },
+  "disk": {
+    "format": "{percentage_free}% ",
+    "tooltip": true,
+  },
+  "temperature": {
+    "format": "{temperatureC}°C {icon}",
+    "tooltip": true,
+    "tooltip-format": "Temperatura actual: {temperatureC}°C\nCrítico si > 80°C",
+    "format-icons": [
+      ""
+    ]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "pulseaudio/slider": {
+    "format": "{volume}%",
+    "format-muted": " MUTE",
+    "step": 5,
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": " {format_source}",
+    "format-icons": {
+      "default": [
+        "",
+        ""
+      ]
+    }
+  },
+  "network": {
+    "format": "{essid}",
+    "format-ethernet": "{ifname} 󰈀",
+    "format-disconnected": " ",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "battery": {
+    "format": "{icon}{capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂁", "󱟢"],
+    "format-charging": "󰂄{capacity}%"
+  },
+
+  "custom/nord-connected": {
+    "format": "{}",
+    "exec": "$SCRIPTS/vpn_connected.sh",
+    "interval": 30,
+    "return-type": "json",
+    "on-click": "$SCRIPTS/toggle_vpn.sh",
+    "tooltip": false
+  },
+  "niri/workspaces":{
+    "format": "{index}"
+  }
+}

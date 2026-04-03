@@ -36,12 +36,13 @@ fi
 
 #  FZF history binding
 # Use rg to filter history, fzf to pick
-fzf-history-rg() {
-  local selected
-  selected=$(fc -l 1 | rg --color=never "${LBUFFER}" | fzf --tac --no-sort | sed 's/^ *[0-9]* *//')
-  BUFFER="$selected"
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N fzf-history-rg
-bindkey '^R' fzf-history-rg
+# fzf-history-rg() {
+#   local selected
+#   selected=$(fc -l 1 | rg --color=never "${LBUFFER}" | fzf --tac --no-sort | sed 's/^ *[0-9]* *//')
+#   BUFFER="$selected"
+#   CURSOR=$#BUFFER
+#   zle redisplay
+# }
+# zle -N fzf-history-rg
+# bindkey '^R' fzf-history-rg
+source <(fzf --zsh)
