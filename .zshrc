@@ -34,15 +34,11 @@ fi
 # tmux sessionizer from the primeagen
 # alias tm=~/tmux_sessionizer
 
-#  FZF history binding
-# Use rg to filter history, fzf to pick
-# fzf-history-rg() {
-#   local selected
-#   selected=$(fc -l 1 | rg --color=never "${LBUFFER}" | fzf --tac --no-sort | sed 's/^ *[0-9]* *//')
-#   BUFFER="$selected"
-#   CURSOR=$#BUFFER
-#   zle redisplay
-# }
-# zle -N fzf-history-rg
-# bindkey '^R' fzf-history-rg
+# less to show results at 5th line, not top
+export LESS="-j.5"
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 source <(fzf --zsh)

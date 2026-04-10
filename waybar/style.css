@@ -10,12 +10,23 @@
 	background: transparent;
 }
 
+#custom-weather,#custom-playing, #custom-sampling{
+	background-color: rgba(46, 52, 64, 0.7);
+	padding: 5px 10px;
+	margin: 5px 5px;
+	color: #DDE3DC;
+}
+
+#custom-sampling{
+	background-color: #FF0000
+}
 #clock, #battery, #pulseaudio, #network, #custom-nord-connected, #cpu, #memory  {
 	background-color: rgba(46, 52, 64, 0.7);
 	padding: 5px 10px;
 	margin: 5px 0px;
-	color: #9DA9A0;
+	color: #DDE3DC;
 }
+
 #workspaces button.focused{
 
 	background-color: rgba(46, 52, 64, 0.7);

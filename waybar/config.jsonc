@@ -7,7 +7,10 @@
   /* === Modules Order === */
   "modules-left": [
     // "custom/initials",
-    "clock"
+    "clock",
+    "custom/weather",
+    "custom/playing",
+    "custom/sampling"
     //"cpu",
     //"memory"
     /*"disk",
@@ -25,6 +28,13 @@
     "network"
   ],
   /* === Modules Left === */
+  "custom/sampling": {
+    "format" : "{}",
+    "tooltip": false,
+    "exec": "$SCRIPTS/rec-state.sh",
+    "signal": 8
+  },
+
   "custom/initials": {
     "format": "󰬁󰫸",
     "tooltip": false
@@ -73,7 +83,7 @@
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
-    "format-muted": " {format_source}",
+    "format-muted": " {format_source}",
     "format-icons": {
       "default": [
         "",
@@ -96,6 +106,21 @@
     "format-charging": "󰂄{capacity}%"
   },
 
+  "custom/weather": {
+    "format": "{}",
+    "exec": "$SCRIPTS/getweather.sh",
+    "return-type": "json",
+    "interval":600000
+  },
+
+  "custom/playing": {
+"format": "{}",
+"exec": "$SCRIPTS/getplaying.sh",
+"on-click": "mpc toggle &>/dev/null",
+"on-click-right": "kitty --detach -e rmpc",
+"tooltip": false,
+"interval": 2
+  },
   "custom/nord-connected": {
     "format": "{}",
     "exec": "$SCRIPTS/vpn_connected.sh",
